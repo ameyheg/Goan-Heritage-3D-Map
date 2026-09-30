@@ -6,8 +6,8 @@
   <title>Amche Goen • Goan Heritage in 3D & Interactive Atlas</title>
   <meta name="description" content="Explore historic Goan houses, colonial civic landmarks, and sacred temples in realistic 3D with authentic cartography of Goa.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-C8IIcIbA.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-PXA6eiQM.css">
+  <script type="module" crossorigin src="./assets/index-BKdJlQVx.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BxBQBrZk.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -88,6 +88,29 @@
         <button class="btn-map-style" data-map-style="satellite" title="Lush Ghats & Coastline">🌴 Satellite</button>
       </div>
 
+      <!-- Floating Structure Navigator Bar on Map -->
+      <div class="map-landmark-nav" id="map-landmark-nav">
+        <button class="btn-nav-arrow" id="btn-map-prev" title="Previous Goan Heritage Landmark (←)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          <span class="btn-nav-label">Prev</span>
+        </button>
+        <div class="map-nav-center" id="map-nav-center-btn" title="Click to zoom into this landmark on the map">
+          <span class="map-nav-counter" id="map-nav-counter">1 / 4</span>
+          <span class="map-nav-title" id="map-nav-title">Margao Municipal Council</span>
+        </div>
+        <button class="btn-nav-arrow" id="btn-map-next" title="Next Goan Heritage Landmark (→)">
+          <span class="btn-nav-label">Next</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="btn-nav-action" id="btn-map-zoom-landmark" title="Zoom in to this location on the map">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          <span>Zoom In</span>
+        </button>
+        <button class="btn-nav-action btn-highlight-3d" id="btn-map-explore-3d" title="Launch 3D Explorer for this landmark">
+          <span>🏛️ 3D View</span>
+        </button>
+      </div>
+
       <!-- Bottom Quick-Jump Carousel -->
       <div class="landmark-bottom-strip" id="landmark-bottom-strip">
         <!-- Rendered dynamically by main.js -->
@@ -98,31 +121,48 @@
     <section class="model-view-container" id="model-view-section">
       <div id="three-canvas-container"></div>
 
-      <!-- 3D Header Bar (Title & Lighting Presets) -->
+      <!-- 3D Header Bar (Title, Nav & Lighting Presets) -->
       <div class="three-top-bar">
         <div class="active-structure-pill" id="active-structure-pill">
+          <button class="btn-pill-nav" id="btn-3d-prev" title="Previous Structure (←)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
           <span class="active-pill-icon" id="pill-icon">🏛️</span>
           <div class="active-pill-info">
-            <h2 id="pill-title">Margao Municipal Council</h2>
+            <div class="pill-title-row">
+              <h2 id="pill-title">Margao Municipal Council</h2>
+              <span class="pill-counter" id="pill-counter">1 / 4</span>
+            </div>
             <span id="pill-subtitle">Salcete (सासष्टी) • Indo-Portuguese Neo-Classical</span>
           </div>
+          <button class="btn-pill-nav" id="btn-3d-next" title="Next Structure (→)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
 
         <div class="lighting-preset-dock">
           <button class="btn-light-preset active" data-preset="golden-hour" title="Golden Hour Sunset">
-            <span>🌅</span> Susegad Sunset
+            <span>🌅</span> <span class="light-label">Susegad Sunset</span>
           </button>
           <button class="btn-light-preset" data-preset="tropical-noon" title="High Tropical Sun">
-            <span>☀️</span> Tropical Noon
+            <span>☀️</span> <span class="light-label">Tropical Noon</span>
           </button>
           <button class="btn-light-preset" data-preset="balcao-night" title="Starlit Lanterns">
-            <span>🌙</span> Balcão Night
+            <span>🌙</span> <span class="light-label">Balcão Night</span>
           </button>
           <button class="btn-light-preset" data-preset="monsoon-mist" title="Goan Monsoon Ambiance">
-            <span>🌧️</span> Monsoon Mist
+            <span>🌧️</span> <span class="light-label">Monsoon Mist</span>
           </button>
         </div>
       </div>
+
+      <!-- Floating Lateral Prev/Next Arrows for 3D Viewport -->
+      <button class="float-nav-btn float-nav-prev" id="btn-float-prev" title="Previous Landmark (←)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="float-nav-btn float-nav-next" id="btn-float-next" title="Next Landmark (→)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
 
       <!-- Flight Telemetry Overlay Banner for Model Fly-Out / Fly-In -->
       <div class="flight-telemetry-banner" id="flight-telemetry-banner">
