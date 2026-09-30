@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amche Goen • Goan Heritage in 3D & Interactive Atlas</title>
+  <meta name="description" content="Explore historic Goan houses, colonial civic landmarks, and sacred temples in realistic 3D with authentic cartography of Goa.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  <script type="module" crossorigin src="./assets/index-twM1xOPX.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-934i5X52.css">
+</head>
+<body class="mode-map">
+  <!-- Nostalgic Azulejo Ceramic Border Motif -->
+  <div class="azulejos-ribbon"></div>
+
+  <!-- Main Heritage Masthead -->
+  <header class="site-header">
+    <div class="brand-section">
+      <div class="brand-logo-azulejo" title="Aami Goenkar Heritage Atlas">
+        <span>🏛️</span>
+      </div>
+      <div class="brand-text">
+        <h1>AMCHE <span>GOEN</span> • दायज</h1>
+        <div class="subtext">Goan Architectural Heritage & 3D Interactive Atlas</div>
+      </div>
+    </div>
+
+    <!-- Center View Mode Tabs -->
+    <nav class="header-center-tabs">
+      <button class="view-tab-btn active" id="tab-map-view">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16"/><path d="M16 6v16"/></svg>
+        <span>Goa Map (गोंयचो नकासो)</span>
+      </button>
+      <button class="view-tab-btn" id="tab-3d-view">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <span>3D Walkthrough</span>
+      </button>
+      <button class="view-tab-btn" id="tab-split-view">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18"/></svg>
+        <span>Studio Split</span>
+      </button>
+    </nav>
+
+    <!-- Header Right Actions: Audio Ambience & Upload -->
+    <div class="header-actions">
+      <button class="btn-pill btn-sound-toggle" id="btn-sound-toggle" title="Toggle Goan Coastal Ambience & Mandó Guitar">
+        <span class="sound-waves">
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+        </span>
+        <span id="sound-label">Susegad Sound</span>
+      </button>
+
+      <button class="btn-pill btn-upload-model" id="btn-open-upload-modal">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span>Drop .GLB Model</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Application Body Workspace -->
+  <main class="app-container">
+    <!-- 1. INTERACTIVE GOA MAP VIEW -->
+    <section class="map-view-container" id="map-view-section">
+      <div id="goa-map"></div>
+
+      <!-- Floating Search & Taluka Filter Controls -->
+      <div class="map-floating-controls">
+        <div class="search-filter-card">
+          <div class="search-input-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="map-search-input" class="search-input" placeholder="Search 3D structure, taluka (e.g. Margao, Dhargal, Cuncolim, Partagali)...">
+          </div>
+          <div class="taluka-chips">
+            <button class="taluka-chip active" data-filter="all">All 3D Structures (4)</button>
+            <button class="taluka-chip" data-filter="north-goa">North Goa (Pernem / पेडणें)</button>
+            <button class="taluka-chip" data-filter="south-goa">South Goa (Salcete & Canacona)</button>
+            <button class="taluka-chip" data-filter="sacred">Sacred Temples</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Style Switcher (Top Right) -->
+      <div class="map-style-widget">
+        <button class="btn-map-style active" data-map-style="parchment" title="Vintage Portuguese Cartography">📜 Vintage Parchment</button>
+        <button class="btn-map-style" data-map-style="azulejo" title="Clean Azulejo Positron">🏛️ Azulejos</button>
+        <button class="btn-map-style" data-map-style="satellite" title="Lush Ghats & Coastline">🌴 Satellite</button>
+      </div>
+
+      <!-- Bottom Quick-Jump Carousel -->
+      <div class="landmark-bottom-strip" id="landmark-bottom-strip">
+        <!-- Rendered dynamically by main.js -->
+      </div>
+    </section>
+
+    <!-- 2. THREE.JS 3D ARCHITECTURAL STAGE -->
+    <section class="model-view-container" id="model-view-section">
+      <div id="three-canvas-container"></div>
+
+      <!-- 3D Header Bar (Title & Lighting Presets) -->
+      <div class="three-top-bar">
+        <div class="active-structure-pill" id="active-structure-pill">
+          <span class="active-pill-icon" id="pill-icon">🏛️</span>
+          <div class="active-pill-info">
+            <h2 id="pill-title">Margao Municipal Council</h2>
+            <span id="pill-subtitle">Salcete (सासष्टी) • Indo-Portuguese Neo-Classical</span>
+          </div>
+        </div>
+
+        <div class="lighting-preset-dock">
+          <button class="btn-light-preset active" data-preset="golden-hour" title="Golden Hour Sunset">
+            <span>🌅</span> Susegad Sunset
+          </button>
+          <button class="btn-light-preset" data-preset="tropical-noon" title="High Tropical Sun">
+            <span>☀️</span> Tropical Noon
+          </button>
+          <button class="btn-light-preset" data-preset="balcao-night" title="Starlit Lanterns">
+            <span>🌙</span> Balcão Night
+          </button>
+          <button class="btn-light-preset" data-preset="monsoon-mist" title="Goan Monsoon Ambiance">
+            <span>🌧️</span> Monsoon Mist
+          </button>
+        </div>
+      </div>
+
+      <!-- Flight Telemetry Overlay Banner for Model Fly-Out / Fly-In -->
+      <div class="flight-telemetry-banner" id="flight-telemetry-banner">
+        <div class="flight-telemetry-icon">✈️</div>
+        <div class="flight-telemetry-info">
+          <div class="flight-telemetry-title" id="flight-telemetry-title">Trans-Goa Heritage Flight</div>
+          <div class="flight-telemetry-route" id="flight-telemetry-route">Margão ➔ Cuncolim (12.4 km South)</div>
+        </div>
+        <div class="flight-compass-badge" id="flight-compass-badge">🧭 South</div>
+      </div>
+
+      <!-- Drone Orbit Active Indicator -->
+      <div class="drone-orbit-indicator" id="drone-orbit-indicator">
+        <span class="orbit-radar-dot"></span>
+        <span>🛰️ Cinematic Drone Orbit Active • Drag or click anywhere to exit</span>
+      </div>
+
+      <!-- 3D Tools Dock (Bottom Left) -->
+      <div class="three-tools-dock">
+        <button class="btn-tool" id="btn-tool-orbit" title="Toggle 360° Cinematic Drone Orbit">
+          <span style="font-size: 16px;">🛰️</span>
+        </button>
+        <button class="btn-tool" id="btn-tool-rotate" title="Toggle Auto-Rotate Turntable">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        </button>
+        <button class="btn-tool" id="btn-tool-wireframe" title="Toggle Wireframe Inspection">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+        </button>
+        <button class="btn-tool" id="btn-tool-reset-cam" title="Reset Camera Vantage Point">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+        </button>
+        <button class="btn-tool" id="btn-tool-snapshot" title="Download Nostalgic Postcard Snapshot">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </button>
+        <button class="btn-tool" id="btn-tool-fullscreen" title="Toggle Fullscreen">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
+      </div>
+
+      <!-- Dossier Toggle Pill (when collapsed) -->
+      <button class="dossier-toggle-btn" id="btn-dossier-toggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Architectural Dossier</span>
+      </button>
+
+      <!-- Architectural Dossier Drawer (Right Side) -->
+      <aside class="architectural-dossier-panel" id="architectural-dossier">
+        <div class="dossier-header">
+          <div>
+            <div class="dossier-badge-row">
+              <span class="dossier-tag" id="dossier-taluka">Salcete</span>
+              <span class="dossier-tag" id="dossier-year">Built 1905</span>
+            </div>
+            <h3 class="dossier-title" id="dossier-name">Margao Municipal Council</h3>
+            <div class="dossier-local-title" id="dossier-local-name">Câmara Municipal de Margão</div>
+          </div>
+          <button class="dossier-close-btn" id="btn-dossier-close" title="Close Panel">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="dossier-content">
+          <!-- Bounding Dimension Stats -->
+          <div class="dossier-meta-grid">
+            <div class="meta-item">
+              <div class="meta-item-label">Style</div>
+              <div class="meta-item-value" id="dossier-style">Indo-Portuguese</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-item-label">3D Footprint</div>
+              <div class="meta-item-value" id="dossier-dimensions">69.8m × 18.2m</div>
+            </div>
+          </div>
+
+          <!-- Hotspots Navigation -->
+          <div class="dossier-section" id="dossier-hotspots-container">
+            <h4 class="dossier-section-title">Architectural Vantage Points</h4>
+            <div class="hotspot-buttons-list" id="hotspot-buttons-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Historical Provenance -->
+          <div class="dossier-section">
+            <h4 class="dossier-section-title">Heritage & Provenance</h4>
+            <p class="dossier-history-p" id="dossier-history-text"></p>
+          </div>
+
+          <!-- Architectural Highlights -->
+          <div class="dossier-section">
+            <h4 class="dossier-section-title">Architectural Features</h4>
+            <ul id="dossier-highlights-list" style="padding-left: 18px; font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
+            </ul>
+          </div>
+
+          <!-- Audio Story Guide Button -->
+          <button class="dossier-audio-guide-btn" id="btn-read-dossier">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <span id="audio-narrator-text">Listen to Heritage Narration</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- 3D Loading Overlay -->
+      <div class="model-loading-overlay hidden" id="model-loading-overlay">
+        <div class="azulejo-spinner"></div>
+        <div class="loading-text-title" id="loading-title">Loading 3D Heritage Model</div>
+        <div class="loading-text-status" id="loading-status">Streaming geometry & textures...</div>
+        <div class="loading-progress-bar-wrap">
+          <div class="loading-progress-bar-fill" id="loading-progress-fill"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Upload Model Modal Dialog -->
+  <div class="goan-modal-backdrop" id="upload-modal-backdrop">
+    <div class="goan-modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h3 style="font-family: var(--font-serif); color: #FFF; font-size: 1.25rem;">Load Goan 3D Model</h3>
+        <button class="dossier-close-btn" id="btn-close-modal">✕</button>
+      </div>
+      <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
+        Upload your Goan heritage house, chapel, or monument 3D model in <strong>.glb</strong> or <strong>.gltf</strong> format to inspect it with realistic lighting, shadows, and architectural dimensions.
+      </p>
+
+      <div class="dropzone-box" id="modal-dropzone">
+        <div class="dropzone-icon">🏛️</div>
+        <div style="font-weight: 600; color: #FFF; font-size: 0.95rem; margin-bottom: 4px;">Drag & Drop your .GLB file here</div>
+        <div style="font-size: 0.76rem; color: var(--goan-gold);">or click to browse your computer</div>
+        <input type="file" id="modal-file-input" accept=".glb,.gltf" style="display: none;">
+      </div>
+
+      <div style="font-size: 0.74rem; color: #9CA3AF; text-align: center;">
+        Models are rendered locally in your browser with hardware WebGL acceleration.
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
