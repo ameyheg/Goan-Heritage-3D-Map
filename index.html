@@ -6,8 +6,8 @@
   <title>Amche Goen • Goan Heritage in 3D & Interactive Atlas</title>
   <meta name="description" content="Explore historic Goan houses, colonial civic landmarks, and sacred temples in realistic 3D with authentic cartography of Goa.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-D9KQCDUw.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-D-Z5KGAa.css">
+  <script type="module" crossorigin src="./assets/index-C4XaJI1m.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DNUToTI7.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -29,11 +29,13 @@
     <nav class="header-center-tabs">
       <button class="view-tab-btn active" id="tab-map-view">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16"/><path d="M16 6v16"/></svg>
-        <span>Goa Map (गोंयचो नकासो)</span>
+        <span class="tab-label-desktop">Goa Map (गोंयचो नकासो)</span>
+        <span class="tab-label-mobile">Map</span>
       </button>
       <button class="view-tab-btn" id="tab-3d-view">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        <span>3D Walkthrough</span>
+        <span class="tab-label-desktop">3D Walkthrough</span>
+        <span class="tab-label-mobile">3D View</span>
       </button>
       <button class="view-tab-btn" id="tab-split-view">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18"/></svg>
@@ -70,30 +72,36 @@
         <div class="search-filter-card">
           <div class="search-input-wrap">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="map-search-input" class="search-input" placeholder="Search 3D structure, taluka (e.g. Margao, Old Goa, Ponda, Shiroda, Bardez)...">
+            <input type="text" id="map-search-input" class="search-input" placeholder="Search Goan landmarks & talukas...">
           </div>
           <div class="taluka-chips">
-            <button class="taluka-chip active" data-filter="all">All 3D Structures (13)</button>
-            <button class="taluka-chip" data-filter="north-goa">North Goa (Tiswadi, Bardez, Pernem)</button>
-            <button class="taluka-chip" data-filter="south-goa">South Goa (Salcete, Ponda, Quepem)</button>
-            <button class="taluka-chip" data-filter="sacred">Sacred Temples & Mosques</button>
-            <button class="taluka-chip" data-filter="colonial">Churches & Bastions</button>
+            <button class="taluka-chip active" data-filter="all"><span class="chip-text">All (13)</span></button>
+            <button class="taluka-chip" data-filter="north-goa"><span class="chip-text">North Goa</span></button>
+            <button class="taluka-chip" data-filter="south-goa"><span class="chip-text">South Goa</span></button>
+            <button class="taluka-chip" data-filter="sacred"><span class="chip-text">Temples & Mosques</span></button>
+            <button class="taluka-chip" data-filter="colonial"><span class="chip-text">Churches & Forts</span></button>
           </div>
         </div>
       </div>
 
       <!-- Gesture & Interaction Hint Pill (First-Time Visitor Micro-Guide) -->
       <div class="map-gesture-hint" id="map-gesture-hint">
-        <span class="hint-icon">👆</span>
-        <span class="hint-text">Drag map • Pinch / Scroll to zoom • Tap landmark</span>
+        <span class="hint-icon">✨</span>
+        <span class="hint-text">Pinch to zoom • Tap landmark</span>
         <button class="hint-close-btn" id="btn-dismiss-hint" aria-label="Dismiss guide" title="Dismiss">✕</button>
       </div>
 
       <!-- Map Style Switcher (Top Right) -->
       <div class="map-style-widget">
-        <button class="btn-map-style active" data-map-style="parchment" title="Vintage Portuguese Cartography">📜 Vintage Parchment</button>
-        <button class="btn-map-style" data-map-style="azulejo" title="Clean Azulejo Positron">🏛️ Azulejos</button>
-        <button class="btn-map-style" data-map-style="satellite" title="Lush Ghats & Coastline">🌴 Satellite</button>
+        <button class="btn-map-style active" data-map-style="parchment" title="Vintage Portuguese Cartography">
+          <span class="style-icon">📜</span><span class="style-name">Parchment</span>
+        </button>
+        <button class="btn-map-style" data-map-style="azulejo" title="Clean Azulejo Positron">
+          <span class="style-icon">🏛️</span><span class="style-name">Azulejos</span>
+        </button>
+        <button class="btn-map-style" data-map-style="satellite" title="Lush Ghats & Coastline">
+          <span class="style-icon">🌴</span><span class="style-name">Satellite</span>
+        </button>
       </div>
 
       <!-- Floating Structure Navigator Bar on Map -->
