@@ -6,8 +6,8 @@
   <title>Amche Goen • Goan Heritage in 3D & Interactive Atlas</title>
   <meta name="description" content="Explore historic Goan houses, colonial civic landmarks, and sacred temples in realistic 3D with authentic cartography of Goa.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-gi7KHqoP.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-H_JxeIU1.css">
+  <script type="module" crossorigin src="./assets/index-DnnyRf1g.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Dcc0Dvst.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -186,10 +186,34 @@
         <span>🛰️ Cinematic Drone Orbit Active • Drag or click anywhere to exit</span>
       </div>
 
+      <!-- Pedestrian Walk Mode Indicator -->
+      <div class="walk-mode-indicator" id="walk-mode-indicator">
+        <span class="walk-icon-pulse">🚶‍♂️</span>
+        <span id="walk-mode-text">Walk Mode Active • Use Arrow Keys or WASD to Walk • Drag to Look</span>
+        <button class="walk-exit-btn" id="btn-exit-walk" title="Exit Walk Mode">✕</button>
+      </div>
+
+      <!-- Virtual Touch Joystick for Mobile Walk Mode -->
+      <div class="virtual-joystick-wrap" id="virtual-joystick-wrap">
+        <div class="virtual-joystick-base" id="joystick-base">
+          <div class="joystick-dir-indicator joystick-dir-up">▲</div>
+          <div class="joystick-dir-indicator joystick-dir-down">▼</div>
+          <div class="joystick-dir-indicator joystick-dir-left">◄</div>
+          <div class="joystick-dir-indicator joystick-dir-right">►</div>
+          <div class="virtual-joystick-knob" id="joystick-knob">
+            <div class="joystick-knob-core"></div>
+          </div>
+        </div>
+        <div class="joystick-label">WALK</div>
+      </div>
+
       <!-- 3D Tools Dock (Bottom Left) -->
       <div class="three-tools-dock">
         <button class="btn-tool" id="btn-tool-orbit" title="Toggle 360° Cinematic Drone Orbit">
           <span style="font-size: 16px;">🛰️</span>
+        </button>
+        <button class="btn-tool" id="btn-tool-walk" title="Toggle Pedestrian Walkthrough (Arrow Keys / Joystick)">
+          <span style="font-size: 16px;">🚶</span>
         </button>
         <button class="btn-tool" id="btn-tool-rotate" title="Toggle Auto-Rotate Turntable">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
