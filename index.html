@@ -6,8 +6,8 @@
   <title>Amche Goen • Goan Heritage in 3D & Interactive Atlas</title>
   <meta name="description" content="Explore historic Goan houses, colonial civic landmarks, and sacred temples in realistic 3D with authentic cartography of Goa.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-BGw9VADu.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Cv0dslJv.css">
+  <script type="module" crossorigin src="./assets/index-DejNgD3O.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-kGn5xLSQ.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -70,13 +70,14 @@
         <div class="search-filter-card">
           <div class="search-input-wrap">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="map-search-input" class="search-input" placeholder="Search 3D structure, taluka (e.g. Margao, Dhargal, Cuncolim, Partagali)...">
+            <input type="text" id="map-search-input" class="search-input" placeholder="Search 3D structure, taluka (e.g. Margao, Old Goa, Ponda, Shiroda, Bardez)...">
           </div>
           <div class="taluka-chips">
-            <button class="taluka-chip active" data-filter="all">All 3D Structures (4)</button>
-            <button class="taluka-chip" data-filter="north-goa">North Goa (Pernem / पेडणें)</button>
-            <button class="taluka-chip" data-filter="south-goa">South Goa (Salcete & Canacona)</button>
-            <button class="taluka-chip" data-filter="sacred">Sacred Temples</button>
+            <button class="taluka-chip active" data-filter="all">All 3D Structures (12)</button>
+            <button class="taluka-chip" data-filter="north-goa">North Goa (Tiswadi, Bardez, Pernem)</button>
+            <button class="taluka-chip" data-filter="south-goa">South Goa (Salcete, Ponda, Quepem)</button>
+            <button class="taluka-chip" data-filter="sacred">Sacred Temples & Mosques</button>
+            <button class="taluka-chip" data-filter="colonial">Churches & Bastions</button>
           </div>
         </div>
       </div>
@@ -102,7 +103,7 @@
           <span class="btn-nav-label">Prev</span>
         </button>
         <div class="map-nav-center" id="map-nav-center-btn" title="Click to zoom into this landmark on the map">
-          <span class="map-nav-counter" id="map-nav-counter">1 / 4</span>
+          <span class="map-nav-counter" id="map-nav-counter">1 / 12</span>
           <span class="map-nav-title" id="map-nav-title">Margao Municipal Council</span>
         </div>
         <button class="btn-nav-arrow" id="btn-map-next" title="Next Goan Heritage Landmark (→)">
@@ -138,7 +139,7 @@
           <div class="active-pill-info">
             <div class="pill-title-row">
               <h2 id="pill-title">Margao Municipal Council</h2>
-              <span class="pill-counter" id="pill-counter">1 / 4</span>
+              <span class="pill-counter" id="pill-counter">1 / 12</span>
             </div>
             <span id="pill-subtitle">Salcete (सासष्टी) • Indo-Portuguese Neo-Classical</span>
           </div>
@@ -170,16 +171,6 @@
       <button class="float-nav-btn float-nav-next" id="btn-float-next" title="Next Landmark (→)">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
-
-      <!-- Flight Telemetry Overlay Banner for Model Fly-Out / Fly-In -->
-      <div class="flight-telemetry-banner" id="flight-telemetry-banner">
-        <div class="flight-telemetry-icon">✈️</div>
-        <div class="flight-telemetry-info">
-          <div class="flight-telemetry-title" id="flight-telemetry-title">Trans-Goa Heritage Flight</div>
-          <div class="flight-telemetry-route" id="flight-telemetry-route">Margão ➔ Cuncolim (12.4 km South)</div>
-        </div>
-        <div class="flight-compass-badge" id="flight-compass-badge">🧭 South</div>
-      </div>
 
       <!-- Drone Orbit Active Indicator -->
       <div class="drone-orbit-indicator" id="drone-orbit-indicator">
