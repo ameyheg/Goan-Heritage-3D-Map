@@ -6,8 +6,8 @@
   <title>Amche Goen • Goan Heritage in 3D & Interactive Atlas</title>
   <meta name="description" content="Explore historic Goan houses, colonial civic landmarks, and sacred temples in realistic 3D with authentic cartography of Goa.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-DnnyRf1g.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Dcc0Dvst.css">
+  <script type="module" crossorigin src="./assets/index-Cb1pAgZG.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CMW11jpo.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -40,6 +40,11 @@
       <button class="view-tab-btn" id="tab-split-view">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18"/></svg>
         <span>Studio Split</span>
+      </button>
+      <button class="view-tab-btn" id="tab-drive-view">
+        <span style="font-size: 15px;">🚗</span>
+        <span class="tab-label-desktop">Road Tour (ड्राइव्ह)</span>
+        <span class="tab-label-mobile">Drive</span>
       </button>
     </nav>
 
@@ -75,7 +80,7 @@
             <input type="text" id="map-search-input" class="search-input" placeholder="Search Goan landmarks & talukas...">
           </div>
           <div class="taluka-chips">
-            <button class="taluka-chip active" data-filter="all"><span class="chip-text">All (13)</span></button>
+            <button class="taluka-chip active" data-filter="all"><span class="chip-text">All (16)</span></button>
             <button class="taluka-chip" data-filter="north-goa"><span class="chip-text">North Goa</span></button>
             <button class="taluka-chip" data-filter="south-goa"><span class="chip-text">South Goa</span></button>
             <button class="taluka-chip" data-filter="sacred"><span class="chip-text">Temples & Mosques</span></button>
@@ -111,7 +116,7 @@
           <span class="btn-nav-label">Prev</span>
         </button>
         <div class="map-nav-center" id="map-nav-center-btn" title="Click to zoom into this landmark on the map">
-          <span class="map-nav-counter" id="map-nav-counter">1 / 12</span>
+          <span class="map-nav-counter" id="map-nav-counter">1 / 16</span>
           <span class="map-nav-title" id="map-nav-title">Margao Municipal Council</span>
         </div>
         <button class="btn-nav-arrow" id="btn-map-next" title="Next Goan Heritage Landmark (→)">
@@ -147,7 +152,7 @@
           <div class="active-pill-info">
             <div class="pill-title-row">
               <h2 id="pill-title">Margao Municipal Council</h2>
-              <span class="pill-counter" id="pill-counter">1 / 12</span>
+              <span class="pill-counter" id="pill-counter">1 / 16</span>
             </div>
             <span id="pill-subtitle">Salcete (सासष्टी) • Indo-Portuguese Neo-Classical</span>
           </div>
@@ -195,16 +200,23 @@
 
       <!-- Virtual Touch Joystick for Mobile Walk Mode -->
       <div class="virtual-joystick-wrap" id="virtual-joystick-wrap">
-        <div class="virtual-joystick-base" id="joystick-base">
-          <div class="joystick-dir-indicator joystick-dir-up">▲</div>
-          <div class="joystick-dir-indicator joystick-dir-down">▼</div>
-          <div class="joystick-dir-indicator joystick-dir-left">◄</div>
-          <div class="joystick-dir-indicator joystick-dir-right">►</div>
-          <div class="virtual-joystick-knob" id="joystick-knob">
-            <div class="joystick-knob-core"></div>
+        <div class="joystick-main-row">
+          <div class="virtual-joystick-base" id="joystick-base">
+            <div class="joystick-dir-indicator joystick-dir-up">▲</div>
+            <div class="joystick-dir-indicator joystick-dir-down">▼</div>
+            <div class="joystick-dir-indicator joystick-dir-left">◄</div>
+            <div class="joystick-dir-indicator joystick-dir-right">►</div>
+            <div class="virtual-joystick-knob" id="joystick-knob">
+              <div class="joystick-knob-core"></div>
+            </div>
+          </div>
+          <div class="joystick-elevation-col">
+            <button class="btn-joy-step" id="btn-joy-up" title="Step Up / Climb Stairs">▲</button>
+            <span class="joy-step-label">STAIRS</span>
+            <button class="btn-joy-step" id="btn-joy-down" title="Step Down">▼</button>
           </div>
         </div>
-        <div class="joystick-label">WALK</div>
+        <div class="joystick-label">WALK IN & EXPLORE</div>
       </div>
 
       <!-- 3D Tools Dock (Bottom Left) -->
@@ -214,6 +226,9 @@
         </button>
         <button class="btn-tool" id="btn-tool-walk" title="Toggle Pedestrian Walkthrough (Arrow Keys / Joystick)">
           <span style="font-size: 16px;">🚶</span>
+        </button>
+        <button class="btn-tool" id="btn-tool-drive" title="Embark on 3D Road Tour Across Goa (🚗)">
+          <span style="font-size: 16px;">🚗</span>
         </button>
         <button class="btn-tool" id="btn-tool-rotate" title="Toggle Auto-Rotate Turntable">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
@@ -247,6 +262,59 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         <span>Architectural Dossier</span>
       </button>
+
+      <!-- 3D Road Tour HUD Overlay -->
+      <div class="drive-hud-overlay" id="drive-hud-overlay">
+        <div class="drive-hud-top-bar">
+          <div class="drive-dest-box">
+            <span class="drive-dest-flag">🏁</span>
+            <label for="drive-dest-select" class="drive-dest-label">DESTINATION:</label>
+            <select id="drive-dest-select" class="drive-dest-select" title="Choose your destination monument to generate route arrows"></select>
+          </div>
+          <div class="drive-nav-stats">
+            <span class="drive-stat-icon">🧭</span>
+            <span class="drive-stat-val" id="drive-dist-remaining">0.0 km</span>
+          </div>
+          <div class="drive-hud-actions">
+            <button class="btn-drive-hud" id="btn-drive-cam" title="Toggle Chase & Cockpit Camera (C)">
+              <span class="btn-icon">🎥</span> <span class="btn-text">Camera</span>
+            </button>
+            <button class="btn-drive-hud" id="btn-drive-recenter" title="Recenter car back onto nearest road lane (R)">
+              <span class="btn-icon">🔄</span> <span class="btn-text">Reset Road</span>
+            </button>
+            <button class="btn-drive-hud btn-drive-exit-pill" id="btn-drive-exit" title="Exit car and explore on foot">
+              <span class="btn-icon">🚶</span> <span class="btn-text">Exit Car</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Speedometer & Controls Hint at bottom -->
+        <div class="drive-hud-bottom">
+          <div class="drive-speedometer-badge" id="drive-speedometer">
+            <span class="speed-val" id="drive-speed-num">0</span>
+            <span class="speed-unit">KM/H</span>
+          </div>
+          <div class="drive-keys-guide">
+            <span class="guide-tag"><kbd>▲</kbd> / <kbd>W</kbd> Accelerate</span>
+            <span class="guide-tag"><kbd>▼</kbd> / <kbd>S</kbd> Brake / Reverse</span>
+            <span class="guide-tag"><kbd>◄</kbd> <kbd>►</kbd> / <kbd>A</kbd> <kbd>D</kbd> Steer</span>
+            <span class="guide-tag"><kbd>Space</kbd> Handbrake</span>
+            <span class="guide-tag"><kbd>C</kbd> Camera</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Touch Driving Controls -->
+      <div class="mobile-drive-controls" id="mobile-drive-controls">
+        <div class="drive-touch-steer-col">
+          <button class="btn-touch-drive" id="btn-touch-left" title="Steer Left">◄</button>
+          <button class="btn-touch-drive" id="btn-touch-right" title="Steer Right">►</button>
+        </div>
+        <div class="drive-touch-pedals-col">
+          <button class="btn-touch-drive btn-touch-brake" id="btn-touch-brake" title="Brake / Reverse">🛑 BRAKE</button>
+          <button class="btn-touch-drive btn-touch-gas" id="btn-touch-gas" title="Accelerate">⚡ DRIVE</button>
+        </div>
+      </div>
 
       <!-- Architectural Dossier Drawer (Right Side) -->
       <aside class="architectural-dossier-panel" id="architectural-dossier">
@@ -327,6 +395,27 @@
 
       <div style="font-size: 0.74rem; color: #9CA3AF; text-align: center;">
         Models are rendered locally in your browser with hardware WebGL acceleration.
+      </div>
+    </div>
+  </div>
+
+  <!-- Drive Arrival Celebration Modal -->
+  <div class="drive-arrival-backdrop" id="drive-arrival-modal">
+    <div class="drive-arrival-card">
+      <div class="arrival-pill">🎉 DESTINATION REACHED</div>
+      <h3 class="arrival-title" id="arrival-title">Basilica of Bom Jesus</h3>
+      <div class="arrival-subtitle" id="arrival-subtitle">Old Goa (तिसवाडी) • UNESCO World Heritage Site</div>
+      <p class="arrival-desc" id="arrival-desc">You have successfully navigated through the scenic roads of Goa to reach this iconic heritage monument.</p>
+      <div class="arrival-buttons">
+        <button class="btn-arrival-action btn-arrival-walk" id="btn-arrival-walk">
+          <span>🚶‍♂️ Walk Inside</span>
+        </button>
+        <button class="btn-arrival-action btn-arrival-orbit" id="btn-arrival-orbit">
+          <span>🛰️ Orbit View</span>
+        </button>
+        <button class="btn-arrival-action btn-arrival-continue" id="btn-arrival-continue">
+          <span>🚗 Keep Driving</span>
+        </button>
       </div>
     </div>
   </div>
