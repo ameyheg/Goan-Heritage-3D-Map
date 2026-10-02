@@ -6,8 +6,8 @@
   <title>Amche Goen • Goan Heritage in 3D & Interactive Atlas</title>
   <meta name="description" content="Explore historic Goan houses, colonial civic landmarks, and sacred temples in realistic 3D with authentic cartography of Goa.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-Cb1pAgZG.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CMW11jpo.css">
+  <script type="module" crossorigin src="./assets/index-CTGBRJ5C.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BaCjp_G4.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -276,14 +276,29 @@
             <span class="drive-stat-val" id="drive-dist-remaining">0.0 km</span>
           </div>
           <div class="drive-hud-actions">
+            <!-- Vehicle Selector Dock (Car / Bike / Helicopter) -->
+            <div class="drive-vehicle-selector" id="drive-vehicle-selector" title="Select Vehicle: Car (1), Bike (2), Helicopter (3)">
+              <button class="btn-vehicle-tab active" id="btn-veh-car" data-vehicle="car" title="Drive Ferrari Supercar (Key 1)">
+                <span class="v-icon">🏎️</span><span class="v-name">Car</span>
+              </button>
+              <button class="btn-vehicle-tab" id="btn-veh-bike" data-vehicle="bike" title="Ride Superbike Motorcycle (Key 2)">
+                <span class="v-icon">🏍️</span><span class="v-name">Bike</span>
+              </button>
+              <button class="btn-vehicle-tab" id="btn-veh-heli" data-vehicle="helicopter" title="Fly Helicopter (Key 3)">
+                <span class="v-icon">🚁</span><span class="v-name">Heli</span>
+              </button>
+            </div>
+            <button class="btn-drive-hud" id="btn-drive-audio" title="Toggle Engine Sound Synthesizer (M)">
+              <span class="btn-icon" id="audio-icon">🔊</span> <span class="btn-text" id="audio-label">Sound</span>
+            </button>
             <button class="btn-drive-hud" id="btn-drive-cam" title="Toggle Chase & Cockpit Camera (C)">
               <span class="btn-icon">🎥</span> <span class="btn-text">Camera</span>
             </button>
             <button class="btn-drive-hud" id="btn-drive-recenter" title="Recenter car back onto nearest road lane (R)">
               <span class="btn-icon">🔄</span> <span class="btn-text">Reset Road</span>
             </button>
-            <button class="btn-drive-hud btn-drive-exit-pill" id="btn-drive-exit" title="Exit car and explore on foot">
-              <span class="btn-icon">🚶</span> <span class="btn-text">Exit Car</span>
+            <button class="btn-drive-hud btn-drive-exit-pill" id="btn-drive-exit" title="Exit vehicle and explore on foot">
+              <span class="btn-icon">🚶</span> <span class="btn-text">Exit Vehicle</span>
             </button>
           </div>
         </div>
@@ -293,12 +308,18 @@
           <div class="drive-speedometer-badge" id="drive-speedometer">
             <span class="speed-val" id="drive-speed-num">0</span>
             <span class="speed-unit">KM/H</span>
+            <div class="drive-alt-sub-badge" id="drive-alt-badge" style="display:none;">
+              <span class="alt-label">ALT</span>
+              <span class="alt-val" id="drive-alt-num">0</span><span class="alt-unit">M</span>
+            </div>
           </div>
-          <div class="drive-keys-guide">
-            <span class="guide-tag"><kbd>▲</kbd> / <kbd>W</kbd> Accelerate</span>
-            <span class="guide-tag"><kbd>▼</kbd> / <kbd>S</kbd> Brake / Reverse</span>
-            <span class="guide-tag"><kbd>◄</kbd> <kbd>►</kbd> / <kbd>A</kbd> <kbd>D</kbd> Steer</span>
-            <span class="guide-tag"><kbd>Space</kbd> Handbrake</span>
+          <div class="drive-keys-guide" id="drive-keys-guide">
+            <span class="guide-tag" id="guide-accel"><kbd>▲</kbd> / <kbd>W</kbd> Accelerate</span>
+            <span class="guide-tag" id="guide-brake"><kbd>▼</kbd> / <kbd>S</kbd> Brake / Reverse</span>
+            <span class="guide-tag" id="guide-steer"><kbd>◄</kbd> <kbd>►</kbd> / <kbd>A</kbd> <kbd>D</kbd> Steer</span>
+            <span class="guide-tag" id="guide-special"><kbd>Space</kbd> Handbrake</span>
+            <span class="guide-tag"><kbd>1-3</kbd> Switch Vehicle</span>
+            <span class="guide-tag"><kbd>M</kbd> Sound</span>
             <span class="guide-tag"><kbd>C</kbd> Camera</span>
           </div>
         </div>
@@ -310,9 +331,14 @@
           <button class="btn-touch-drive" id="btn-touch-left" title="Steer Left">◄</button>
           <button class="btn-touch-drive" id="btn-touch-right" title="Steer Right">►</button>
         </div>
+        <!-- Helicopter Touch Flight Vertical Controls (shown when helicopter active) -->
+        <div class="drive-touch-heli-col" id="drive-touch-heli-col" style="display:none;">
+          <button class="btn-touch-drive btn-touch-climb" id="btn-touch-climb" title="Climb / Ascend">⬆️ CLIMB</button>
+          <button class="btn-touch-drive btn-touch-descend" id="btn-touch-descend" title="Lower / Descend">⬇️ LOWER</button>
+        </div>
         <div class="drive-touch-pedals-col">
           <button class="btn-touch-drive btn-touch-brake" id="btn-touch-brake" title="Brake / Reverse">🛑 BRAKE</button>
-          <button class="btn-touch-drive btn-touch-gas" id="btn-touch-gas" title="Accelerate">⚡ DRIVE</button>
+          <button class="btn-touch-drive btn-touch-gas" id="btn-touch-gas" title="Accelerate / Forward">⚡ DRIVE</button>
         </div>
       </div>
 
