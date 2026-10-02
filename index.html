@@ -27,8 +27,8 @@
   <meta name="twitter:image" content="https://ameyheg.github.io/Goan-Heritage-3D-Map/og-preview.png">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-MwdUSm4x.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BONY7S7o.css">
+  <script type="module" crossorigin src="./assets/index-B4xMqKsz.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DkOkRcdH.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -334,6 +334,7 @@
               <div class="tour-live-pill">
                 <span class="tour-pulse-dot"></span>
                 <span class="tour-mode-badge" id="tour-mode-badge">AUTO-DRIVE TOUR</span>
+                <span class="tour-walk-badge" id="tour-walk-badge" style="display: none;">🚶 DETAILED ARCHITECTURAL WALK</span>
               </div>
               <div class="tour-progress-counter" id="tour-progress-counter">Stop 1 / 16</div>
             </div>
@@ -348,11 +349,17 @@
               <span class="narration-speaker-icon">🎙️</span>
               <p class="tour-subtitle-text" id="tour-subtitle-text">Cruising along the scenic Goan boulevard...</p>
             </div>
-            <div class="tour-action-controls">
+            <div class="tour-action-controls" id="tour-drive-controls">
               <button class="btn-tour-ctrl" id="btn-tour-prev" title="Previous Stop">⏮ Prev</button>
               <button class="btn-tour-ctrl btn-tour-pause" id="btn-tour-pause" title="Pause / Resume Auto-Drive">⏸ Pause</button>
               <button class="btn-tour-ctrl" id="btn-tour-next" title="Next Stop">⏭ Next</button>
-              <button class="btn-tour-ctrl btn-tour-explore" id="btn-tour-explore" title="Exit car and explore this monument in 3D">🚶 Explore 3D</button>
+              <button class="btn-tour-ctrl btn-tour-detailed" id="btn-tour-detailed" title="Take an in-depth architectural walking tour with the 3D guide">🚶 Detailed Tour</button>
+            </div>
+            <div class="tour-action-controls" id="tour-walk-controls" style="display: none;">
+              <button class="btn-tour-ctrl" id="btn-walk-prev" title="Previous Architectural Point">⏮ Prev Point</button>
+              <button class="btn-tour-ctrl btn-tour-pause" id="btn-walk-pause" title="Pause / Resume Speech">⏸ Pause</button>
+              <button class="btn-tour-ctrl" id="btn-walk-next" title="Next Architectural Point">⏭ Next Point</button>
+              <button class="btn-tour-ctrl btn-walk-return" id="btn-walk-return" title="Return to Car & Continue Boulevard Tour">🚗 Return to Car</button>
             </div>
           </div>
         </div>
