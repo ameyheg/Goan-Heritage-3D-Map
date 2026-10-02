@@ -5,9 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amche Goen • Goan Heritage in 3D & Interactive Atlas</title>
   <meta name="description" content="Explore historic Goan houses, colonial civic landmarks, and sacred temples in realistic 3D with authentic cartography of Goa.">
+  <meta name="keywords" content="Goa, heritage, 3D, architecture, monuments, Konkani, Three.js, interactive map, virtual tour, drive">
+  <meta name="author" content="Amey Hegde">
+  <meta name="theme-color" content="#1a120c">
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp, Discord) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Amche Goen • Goan Heritage in 3D & Interactive Atlas">
+  <meta property="og:description" content="Explore 16 real Goan monuments in detailed 3D — drive a Ferrari past them, fly a helicopter over them, or walk inside. Pure vanilla JS + Three.js, zero frameworks.">
+  <meta property="og:url" content="https://ameyheg.github.io/Goan-Heritage-3D-Map/">
+  <meta property="og:image" content="https://ameyheg.github.io/Goan-Heritage-3D-Map/og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Amche Goen">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Amche Goen • Goan Heritage in 3D & Interactive Atlas">
+  <meta name="twitter:description" content="16 real 3D monuments. Drive a Ferrari, ride a superbike, or fly a helicopter across Goa's heritage circuit. Procedural audio, zero frameworks.">
+  <meta name="twitter:image" content="https://ameyheg.github.io/Goan-Heritage-3D-Map/og-preview.png">
+
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-Dbm8LAvJ.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BaCjp_G4.css">
+  <script type="module" crossorigin src="./assets/index-MwdUSm4x.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BONY7S7o.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -288,6 +309,9 @@
                 <span class="v-icon">🚁</span><span class="v-name">Heli</span>
               </button>
             </div>
+            <button class="btn-drive-hud btn-drive-tour-toggle" id="btn-drive-tour" title="Guided Tour / Auto-Drive Mode (T)">
+              <span class="btn-icon" id="tour-btn-icon">🎧</span> <span class="btn-text" id="tour-btn-label">Guided Tour</span>
+            </button>
             <button class="btn-drive-hud" id="btn-drive-audio" title="Toggle Engine Sound Synthesizer (M)">
               <span class="btn-icon" id="audio-icon">🔊</span> <span class="btn-text" id="audio-label">Sound</span>
             </button>
@@ -300,6 +324,36 @@
             <button class="btn-drive-hud btn-drive-exit-pill" id="btn-drive-exit" title="Exit vehicle and explore on foot">
               <span class="btn-icon">🚶</span> <span class="btn-text">Exit Vehicle</span>
             </button>
+          </div>
+        </div>
+
+        <!-- Guided Tour HUD Banner & Narration Card -->
+        <div class="drive-tour-banner hidden" id="drive-tour-banner">
+          <div class="tour-banner-content">
+            <div class="tour-banner-header">
+              <div class="tour-live-pill">
+                <span class="tour-pulse-dot"></span>
+                <span class="tour-mode-badge" id="tour-mode-badge">AUTO-DRIVE TOUR</span>
+              </div>
+              <div class="tour-progress-counter" id="tour-progress-counter">Stop 1 / 16</div>
+            </div>
+            <div class="tour-monument-row">
+              <span class="tour-monument-icon" id="tour-monument-icon">🏛️</span>
+              <div class="tour-monument-details">
+                <h4 class="tour-monument-name" id="tour-monument-name">Basilica of Bom Jesus</h4>
+                <div class="tour-monument-meta" id="tour-monument-meta">Old Goa (तिसवाडी) • UNESCO World Heritage Site</div>
+              </div>
+            </div>
+            <div class="tour-narration-box" id="tour-narration-box">
+              <span class="narration-speaker-icon">🎙️</span>
+              <p class="tour-subtitle-text" id="tour-subtitle-text">Cruising along the scenic Goan boulevard...</p>
+            </div>
+            <div class="tour-action-controls">
+              <button class="btn-tour-ctrl" id="btn-tour-prev" title="Previous Stop">⏮ Prev</button>
+              <button class="btn-tour-ctrl btn-tour-pause" id="btn-tour-pause" title="Pause / Resume Auto-Drive">⏸ Pause</button>
+              <button class="btn-tour-ctrl" id="btn-tour-next" title="Next Stop">⏭ Next</button>
+              <button class="btn-tour-ctrl btn-tour-explore" id="btn-tour-explore" title="Exit car and explore this monument in 3D">🚶 Explore 3D</button>
+            </div>
           </div>
         </div>
 
@@ -319,6 +373,7 @@
             <span class="guide-tag" id="guide-steer"><kbd>◄</kbd> <kbd>►</kbd> / <kbd>A</kbd> <kbd>D</kbd> Steer</span>
             <span class="guide-tag" id="guide-special"><kbd>Space</kbd> Handbrake</span>
             <span class="guide-tag"><kbd>1-3</kbd> Switch Vehicle</span>
+            <span class="guide-tag"><kbd>T</kbd> Guided Tour</span>
             <span class="guide-tag"><kbd>M</kbd> Sound</span>
             <span class="guide-tag"><kbd>C</kbd> Camera</span>
           </div>
@@ -391,11 +446,19 @@
 
       <!-- 3D Loading Overlay -->
       <div class="model-loading-overlay hidden" id="model-loading-overlay">
-        <div class="azulejo-spinner"></div>
+        <div class="azulejo-spinner" id="loading-spinner"></div>
         <div class="loading-text-title" id="loading-title">Loading 3D Heritage Model</div>
         <div class="loading-text-status" id="loading-status">Streaming geometry & textures...</div>
-        <div class="loading-progress-bar-wrap">
+        <div class="loading-progress-bar-wrap" id="loading-progress-bar-wrap">
           <div class="loading-progress-bar-fill" id="loading-progress-fill"></div>
+        </div>
+        <div class="loading-retry-wrap hidden" id="loading-retry-wrap">
+          <button class="btn-loading-retry" id="btn-loading-retry">
+            <span>🔄 Retry Loading</span>
+          </button>
+          <button class="btn-loading-fallback" id="btn-loading-fallback">
+            <span>🏛️ View Procedural 3D Model</span>
+          </button>
         </div>
       </div>
     </section>
