@@ -27,8 +27,8 @@
   <meta name="twitter:image" content="https://ameyheg.github.io/Goan-Heritage-3D-Map/og-preview.png">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-BsXTXuPm.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-IrFWpMA5.css">
+  <script type="module" crossorigin src="./assets/index-DtQDzpYH.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Cx0SgP4s.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -216,6 +216,13 @@
       <div class="walk-mode-indicator" id="walk-mode-indicator">
         <span class="walk-icon-pulse">🚶‍♂️</span>
         <span id="walk-mode-text">Walk Mode Active • Use Arrow Keys or WASD to Walk • Drag to Look</span>
+        <button class="btn-walk-guide-toggle" id="btn-walk-guide-toggle" style="display: none;" title="Explore Heritage Site with 3D Tour Guide">
+          <span>🎙️ Follow Guide</span>
+        </button>
+        <div class="tour-lang-pill" id="walk-tour-lang-pill" style="display: none;" title="Choose Guide Language (English / हिंदी)">
+          <button class="btn-lang-choice active" data-lang="en">EN</button>
+          <button class="btn-lang-choice" data-lang="hi">हिंदी</button>
+        </div>
         <button class="walk-exit-btn" id="btn-exit-walk" title="Exit Walk Mode">✕</button>
       </div>
 
@@ -336,6 +343,10 @@
                 <span class="tour-mode-badge" id="tour-mode-badge">AUTO-DRIVE TOUR</span>
                 <span class="tour-walk-badge" id="tour-walk-badge" style="display: none;">🚶 DETAILED ARCHITECTURAL WALK</span>
               </div>
+              <div class="tour-lang-pill" id="banner-tour-lang-pill" style="display: none;" title="Choose Guide Language (English / हिंदी)">
+                <button class="btn-lang-choice active" data-lang="en">EN</button>
+                <button class="btn-lang-choice" data-lang="hi">हिंदी</button>
+              </div>
               <div class="tour-progress-counter" id="tour-progress-counter">Stop 1 / 16</div>
             </div>
             <div class="tour-monument-row">
@@ -362,6 +373,24 @@
               <button class="btn-tour-ctrl btn-walk-return" id="btn-walk-return" title="Return to Car & Continue Boulevard Tour">🚗 Return to Car</button>
             </div>
           </div>
+        </div>
+
+        <!-- Skydiving / Parachute HUD Banner -->
+        <div class="skydive-hud-banner hidden" id="skydive-hud-banner">
+          <div class="skydive-banner-top-row">
+            <div class="skydive-banner-badge">🪂 SKYDIVING OVER GOA</div>
+            <div class="skydive-alt-pill" id="skydive-alt-pill" title="Live Altitude & Sink Rate">
+              <span class="alt-pill-icon">⬇</span>
+              <span class="alt-pill-val" id="skydive-alt-val">--</span><span class="alt-pill-unit">M</span>
+              <span class="alt-pill-rate" id="skydive-alt-rate">(-3.6 m/s)</span>
+            </div>
+            <button class="btn-skydive-cam" id="btn-skydive-cam" title="Toggle Person & Aerial Camera Views (C)">
+              <span class="cam-icon">📷</span>
+              <span id="skydive-cam-label">Person View</span>
+            </button>
+          </div>
+          <div class="skydive-banner-title" id="skydive-banner-text">Dropping from helicopter... Deploying parachute automatically</div>
+          <div class="skydive-banner-hints">Steer: <kbd>A</kbd> / <kbd>D</kbd> or <kbd>←</kbd> <kbd>→</kbd> • Flare: <kbd>W</kbd> / <kbd>S</kbd> • Camera: <kbd>C</kbd></div>
         </div>
 
         <!-- Speedometer & Controls Hint at bottom -->
