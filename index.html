@@ -27,8 +27,8 @@
   <meta name="twitter:image" content="https://ameyheg.github.io/Goan-Heritage-3D-Map/og-preview.png">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  <script type="module" crossorigin src="./assets/index-DtQDzpYH.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Cx0SgP4s.css">
+  <script type="module" crossorigin src="./assets/index-DSoiOBJA.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DWG2Sa7B.css">
 </head>
 <body class="mode-map">
   <!-- Nostalgic Azulejo Ceramic Border Motif -->
@@ -294,14 +294,16 @@
       <!-- 3D Road Tour HUD Overlay -->
       <div class="drive-hud-overlay" id="drive-hud-overlay">
         <div class="drive-hud-top-bar">
-          <div class="drive-dest-box">
-            <span class="drive-dest-flag">🏁</span>
-            <label for="drive-dest-select" class="drive-dest-label">DESTINATION:</label>
-            <select id="drive-dest-select" class="drive-dest-select" title="Choose your destination monument to generate route arrows"></select>
-          </div>
-          <div class="drive-nav-stats">
-            <span class="drive-stat-icon">🧭</span>
-            <span class="drive-stat-val" id="drive-dist-remaining">0.0 km</span>
+          <div class="drive-hud-dest-row">
+            <div class="drive-dest-box">
+              <span class="drive-dest-flag">🏁</span>
+              <label for="drive-dest-select" class="drive-dest-label">DESTINATION:</label>
+              <select id="drive-dest-select" class="drive-dest-select" title="Choose your destination monument to generate route arrows"></select>
+            </div>
+            <div class="drive-nav-stats">
+              <span class="drive-stat-icon">🧭</span>
+              <span class="drive-stat-val" id="drive-dist-remaining">0.0 km</span>
+            </div>
           </div>
           <div class="drive-hud-actions">
             <!-- Vehicle Selector Dock (Car / Bike / Helicopter) -->
@@ -316,6 +318,9 @@
                 <span class="v-icon">🚁</span><span class="v-name">Heli</span>
               </button>
             </div>
+            <button class="btn-drive-hud btn-drive-exit-pill" id="btn-drive-exit" title="Exit vehicle and explore on foot">
+              <span class="btn-icon">🚶</span> <span class="btn-text">Exit Vehicle</span>
+            </button>
             <button class="btn-drive-hud btn-drive-tour-toggle" id="btn-drive-tour" title="Guided Tour / Auto-Drive Mode (T)">
               <span class="btn-icon" id="tour-btn-icon">🎧</span> <span class="btn-text" id="tour-btn-label">Guided Tour</span>
             </button>
@@ -327,9 +332,6 @@
             </button>
             <button class="btn-drive-hud" id="btn-drive-recenter" title="Recenter car back onto nearest road lane (R)">
               <span class="btn-icon">🔄</span> <span class="btn-text">Reset Road</span>
-            </button>
-            <button class="btn-drive-hud btn-drive-exit-pill" id="btn-drive-exit" title="Exit vehicle and explore on foot">
-              <span class="btn-icon">🚶</span> <span class="btn-text">Exit Vehicle</span>
             </button>
           </div>
         </div>
